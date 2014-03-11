@@ -3,17 +3,28 @@
 This repo provides a template Vagrantfile to create a CoreOS virtual machine using the Virtualbox software hypervisor.
 After setup is complete you will have a single CoreOS virtual machine running on your local machine.
 
-# Notes on SystemD + Docker
+## Running Docker Daemon 
 
-1) https://gist.github.com/philips/9480854
+1) Build vagrant machine
+
+  * `vagrant up`
+
+2) Local docker client usage
+
+  * docker -H :4243 command
 
 ## Global Installation on Local Computer
 
 1) Build vagrant machine
+
   * `vagrant up`
+
 2) Package vagrant machine
+
   * `vagrant package`
+
 3) Install as a global box
+
   * `vagrant box add custom-coreos package.box`
 
 ## Streamlined setup
@@ -118,3 +129,6 @@ vagrant up
 vagrant ssh
 ```
 
+# Links
+
+1) https://gist.github.com/philips/9480854

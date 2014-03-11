@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
   # Uncomment below to enable NFS for sharing the host machine into the coreos-vagrant VM.
    config.vm.network "private_network", ip: "172.12.8.150"
    config.vm.synced_folder ".", "/home/core/share", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+   config.vm.synced_folder "~/Desktop", "/home/core/desktop", :nfs => true, :mount_options   => ['nolock,vers=3,udp']
    #config.vm.synced_folder "../../development/jump-backend", "/home/core/jump-backend", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
    #config.vm.synced_folder "../../development/jump-devops", "/home/core/jump-devops", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
 
@@ -26,4 +27,8 @@ Vagrant.configure("2") do |config|
   if Vagrant.has_plugin?("vagrant-vbguest") then
     config.vbguest.auto_update = false
   end
+
+  config.vm.provision :shell, :inline => "sudo cp /home/core/share/docker-local.service /media/state/units"
+  config.vm.provision :shell, :inline => "sudo systemctl restart local-enable.service"
+
 end
