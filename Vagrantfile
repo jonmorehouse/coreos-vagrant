@@ -1,6 +1,5 @@
 # -*- mode: ruby -*-
 # # vi: set ft=ruby :
-
 Vagrant.configure("2") do |config|
   config.vm.box = "coreos"
   config.vm.box_url = "http://storage.core-os.net/coreos/amd64-generic/dev-channel/coreos_production_vagrant.box"
@@ -8,6 +7,10 @@ Vagrant.configure("2") do |config|
   # Uncomment below to enable NFS for sharing the host machine into the coreos-vagrant VM.
    config.vm.network "private_network", ip: "172.12.8.150"
    config.vm.synced_folder ".", "/home/core/share", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+   #config.vm.synced_folder "../../development/jump-backend", "/home/core/jump-backend", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+   #config.vm.synced_folder "../../development/jump-devops", "/home/core/jump-devops", id: "core", :nfs => true,  :mount_options   => ['nolock,vers=3,udp']
+
+  config.vm.network "forwarded_port", guest: 5555, host: 5555
 
   # Fix docker not being able to resolve private registry in VirtualBox
   config.vm.provider :virtualbox do |vb, override|
