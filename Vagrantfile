@@ -13,6 +13,10 @@ Vagrant.configure("2") do |config|
 
   # configure port forwarding as needed throughout
   config.vm.network "forwarded_port", guest: 4243, host: 4243
+  config.vm.network "forwarded_port", guest: 5000, host: 5000
+  config.vm.network "forwarded_port", guest: 5001, host: 5001
+  config.vm.network "forwarded_port", guest: 5002, host: 5002
+
 
   # Fix docker not being able to resolve private registry in VirtualBox
   config.vm.provider :virtualbox do |vb, override|
