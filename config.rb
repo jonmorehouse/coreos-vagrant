@@ -22,7 +22,7 @@ $num_instances=1
 # You can then use the docker tool locally by setting the folloing env var:
    #export DOCKER_HOST='tcp://127.0.0.1:4243'
 $expose_docker_tcp=4243
-
+$forwarded_ports=[4001,4002,4003,4004]
 # Setting for VirtualBox VMs
 #$vb_gui = false
 #$vb_memory = 1024

@@ -21,7 +21,7 @@ if ENV["NUM_INSTANCES"].to_i > 0 && ENV["NUM_INSTANCES"]
 end
 
 if File.exist?(CONFIG)
-	require_relative CONFIG
+  require_relative CONFIG
 end
 
 Vagrant.configure("2") do |config|
@@ -66,6 +66,12 @@ Vagrant.configure("2") do |config|
         config.vm.network "forwarded_port", guest: 4243, host: $expose_docker_tcp, auto_correct: true
       end
 
+      if $forwarded_ports 
+        $forwarded_ports.each do |port|
+          config.vm.network "forwarded_port", guest: port, host: port
+        end
+      end
+  
       config.vm.provider :virtualbox do |vb|
         vb.gui = $vb_gui
         vb.memory = $vb_memory
